@@ -1,0 +1,4 @@
+<material>
+    <surfaceshader name="Shaders/BLGL/TararaToon.shader" />
+    <parameter name="toon_area_type" value="3" />
+</material>

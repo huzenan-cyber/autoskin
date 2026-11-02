@@ -1,0 +1,30 @@
+{
+  "packages": [
+    {
+      "id": "offical-3c-pubg",
+      "name": "offical-3c-pubg",
+      "type": "remote",
+      "readOnly": true,
+      "enabled": true,
+      "editor_scripts_enabled": false,
+      "url": "https://tapcode-sce.spark.xd.com/src/offical-3c-pubg/",
+      "projectId": "offical-3c-pubg",
+      "version": "latest"
+    }
+  ],
+  "resourceBrowserIgnoredDirs": [
+    "ResCache",
+    "shadercache_editor",
+    ".cache",
+    ".build",
+    ".project",
+    "dist"
+  ],
+  "fileWatcherIgnoredDirs": [
+    "ResCache",
+    "shadercache_editor"
+  ],
+  "enginePreviewPlatform": "windows",
+  "cameraBookmarks": [],
+  "lastScenePath": "D:/svn-work/autoskin/autoskin/.cache/packages/offical-3c-pubg/1.0.11/3CTestScene.xml"
+}

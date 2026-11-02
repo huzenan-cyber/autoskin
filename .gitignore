@@ -1,0 +1,34 @@
+# Version control metadata from the original checkout.
+.svn/
+
+# Downloaded dependencies, generated tools, and local agent state.
+.cache/
+.installer/
+.cli/
+.claude/
+.codex/
+.cursor/
+.gemini/
+
+# Build output and temporary files.
+.build/
+.tmp/
+dist/
+ResCache/
+shadercache_editor/
+__pycache__/
+*.py[cod]
+*.log
+*.blend1
+*.blend2
+
+# Local credentials and operating-system files.
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,12 @@
+{
+  "source_sha256": "cfd5c311af579f7c5bef1c5b4e574af013e340cbd3639f1e63c91e09ac9739c8",
+  "voxels": 27240,
+  "colors": 9,
+  "size": [
+    76,
+    26,
+    95
+  ],
+  "vox_readback_exact": true,
+  "offgrid": 0
+}

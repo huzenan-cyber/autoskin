@@ -1,0 +1,6 @@
+<material>
+    <surfaceshader name="Shaders/BLGL/TararaToon.shader" />
+    <surfacetexture name="albedo_map" texture="Textures/Tarara_Face_D.png" />
+    <parameter name="toon_area_type" value="3" />
+    <parameter name="toon_skin_shadow_tint" value="1 0.760784314 0.705882353 1" />
+</material>

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "files": {
+    "source/WhiteCapTail_edited_vox.blend": {
+      "voxel_points": 27240,
+      "packed_images": true,
+      "external_libraries": 0
+    },
+    "SM_WhiteCapTail.blend": {
+      "triangles": 17448,
+      "packed_images": true,
+      "external_libraries": 0,
+      "rig_count": 0
+    },
+    "SK_WhiteCapTail.blend": {
+      "triangles": 17448,
+      "packed_images": true,
+      "external_libraries": 0,
+      "rig_count": 1
+    },
+    "renders/WhiteCapTail_Review.blend": {
+      "packed_images": true,
+      "external_libraries": 0,
+      "camera": "ReviewCamera"
+    }
+  }
+}

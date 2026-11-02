@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<node id="2">
+	<attribute name="Is Enabled" value="true" />
+	<attribute name="Name" value="Tarara" />
+	<attribute name="Tags" />
+	<attribute name="Position" value="0 0 0" />
+	<attribute name="Rotation" value="1 0 0 0" />
+	<attribute name="Scale" value="1 1 1" />
+	<attribute name="Variables" />
+	<component type="AnimatedModel" id="2">
+		<attribute name="Model" value="Model;Models/Tarara.mdl" />
+		<attribute name="Material" value="Material;Materials/Face.xml;Materials/Face.xml;Materials/Eyes.xml;Materials/EyeWhite.xml;Materials/Hair.xml;Materials/Hair.xml;Materials/Hair.xml;Materials/Hair.xml;Materials/Skin.xml;Materials/LeatherUpper.xml;Materials/ClothUpper.xml;Materials/ClothUpper.xml;Materials/ClothUpper.xml;Materials/ClothUpper.xml;Materials/MetalUpper.xml;Materials/ClothUpper.xml;Materials/LeatherLower.xml;Materials/MetalLower.xml;Materials/SkinLower.xml;Materials/MetalLower.xml;Materials/ClothLower.xml;Materials/ClothLower.xml;Materials/LeatherLower.xml;Materials/InnerCloth.xml;Materials/Ribbon.xml;Materials/ClothLower.xml;Materials/ClothLower.xml" />
+		<attribute name="Update When Invisible" value="true" />
+	</component>
+	<component type="AnimationController" id="4" />
+	<component type="KawaiiPhysics" id="5">
+		<attribute name="Root Bone" value="hair_h_01" />
+		<attribute name="Dummy Bone Length" value="0.12" />
+		<attribute name="Bone Forward Axis" value="X_Negative" />
+		<attribute name="Damping" value="0.17" />
+		<attribute name="Stiffness" value="0.2" />
+		<attribute name="World Damping Location" value="0.5" />
+		<attribute name="World Damping Rotation" value="0.25" />
+		<attribute name="Radius" value="0.026" />
+		<attribute name="Limit Angle" value="45" />
+		<attribute name="Warm Up Frames" value="12" />
+		<attribute name="Teleport Distance Threshold" value="2" />
+		<attribute name="Teleport Rotation Threshold" value="65" />
+		<attribute name="Stiffness Curve Data" type="FloatCurve">
+			<attribute name="Keys">
+				<variant type="FloatCurveKey">
+					<attribute name="Value" value="1" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+				<variant type="FloatCurveKey">
+					<attribute name="Time" value="1" />
+					<attribute name="Value" value="0.2" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+			</attribute>
+		</attribute>
+		<attribute name="Spherical Limits">
+			<variant type="KawaiiPhysicsSphericalLimit">
+				<attribute name="Driving Bone" value="Bip001 Head" />
+				<attribute name="Offset Location" value="-10 0 0" />
+				<attribute name="Radius" value="0.1" />
+			</variant>
+		</attribute>
+		<attribute name="Gravity" value="0 -1.5 0" />
+	</component>
+	<component type="KawaiiPhysics" id="6">
+		<attribute name="Root Bone" value="hair_a_01" />
+		<attribute name="Additional Root Bones">
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="hair_b_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="hair_c_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="hair_d_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="hair_e_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="hair_f_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="hair_g_01" />
+			</variant>
+		</attribute>
+		<attribute name="Dummy Bone Length" value="0.025" />
+		<attribute name="Bone Forward Axis" value="X_Negative" />
+		<attribute name="Damping" value="0.2" />
+		<attribute name="Stiffness" value="0.3" />
+		<attribute name="World Damping Location" value="0.5" />
+		<attribute name="World Damping Rotation" value="0.35" />
+		<attribute name="Radius" value="0.015" />
+		<attribute name="Limit Angle" value="22" />
+		<attribute name="Warm Up Frames" value="12" />
+		<attribute name="Teleport Distance Threshold" value="2" />
+		<attribute name="Teleport Rotation Threshold" value="65" />
+		<attribute name="Stiffness Curve Data" type="FloatCurve">
+			<attribute name="Keys">
+				<variant type="FloatCurveKey">
+					<attribute name="Value" value="1" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+				<variant type="FloatCurveKey">
+					<attribute name="Time" value="1" />
+					<attribute name="Value" value="0.55" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+			</attribute>
+		</attribute>
+		<attribute name="Spherical Limits">
+			<variant type="KawaiiPhysicsSphericalLimit">
+				<attribute name="Driving Bone" value="Bip001 Head" />
+				<attribute name="Offset Location" value="-10 0 0" />
+				<attribute name="Radius" value="0.1" />
+			</variant>
+		</attribute>
+		<attribute name="Gravity" value="0 -0.5 0" />
+	</component>
+	<component type="KawaiiPhysics" id="7">
+		<attribute name="Root Bone" value="skirt_a_01" />
+		<attribute name="Additional Root Bones">
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_i_01" />
+			</variant>
+		</attribute>
+		<attribute name="Dummy Bone Length" value="0.2" />
+		<attribute name="Bone Forward Axis" value="X_Negative" />
+		<attribute name="Damping" value="0.12" />
+		<attribute name="Stiffness" value="0.055" />
+		<attribute name="World Damping Location" value="0.7" />
+		<attribute name="World Damping Rotation" value="0.65" />
+		<attribute name="Radius" value="0.04" />
+		<attribute name="Limit Angle" value="65" />
+		<attribute name="Warm Up Frames" value="12" />
+		<attribute name="Teleport Distance Threshold" value="2" />
+		<attribute name="Teleport Rotation Threshold" value="65" />
+		<attribute name="Stiffness Curve Data" type="FloatCurve">
+			<attribute name="Keys">
+				<variant type="FloatCurveKey">
+					<attribute name="Value" value="1" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+				<variant type="FloatCurveKey">
+					<attribute name="Time" value="1" />
+					<attribute name="Value" value="0.55" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+			</attribute>
+		</attribute>
+		<attribute name="Capsule Limits">
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L Thigh" />
+				<attribute name="Offset Location" value="-24.0256 -2.38419e-07 0" />
+				<attribute name="Offset Rotation" value="0.707107 7.01699e-09 -0.707107 0" />
+				<attribute name="Radius" value="0.11" />
+				<attribute name="Length" value="0.326748" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R Thigh" />
+				<attribute name="Offset Location" value="-24.0256 -4.44089e-16 -4.76837e-07" />
+				<attribute name="Offset Rotation" value="0.707107 1.30702e-17 -0.707107 0" />
+				<attribute name="Radius" value="0.11" />
+				<attribute name="Length" value="0.326748" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L UpperArm" />
+				<attribute name="Offset Location" value="-14.4288 0 -7.62939e-06" />
+				<attribute name="Offset Rotation" value="0.707107 -0 -0.707107 0" />
+				<attribute name="Radius" value="0.04" />
+				<attribute name="Length" value="0.248576" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L Forearm" />
+				<attribute name="Offset Location" value="-13.5684 0 7.62939e-06" />
+				<attribute name="Offset Rotation" value="0.707107 0 -0.707106 0" />
+				<attribute name="Radius" value="0.03" />
+				<attribute name="Length" value="0.241367" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L Hand" />
+				<attribute name="Offset Location" value="-6.67492 0.000525665 -0.566394" />
+				<attribute name="Offset Rotation" value="0.676554 -5.79927e-05 -0.736393 0" />
+				<attribute name="Radius" value="0.03" />
+				<attribute name="Length" value="0.103978" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R UpperArm" />
+				<attribute name="Offset Location" value="-14.4288 0 0" />
+				<attribute name="Offset Rotation" value="0.707107 0 -0.707107 0" />
+				<attribute name="Radius" value="0.04" />
+				<attribute name="Length" value="0.248576" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R Forearm" />
+				<attribute name="Offset Location" value="-13.5684 4.76837e-07 0" />
+				<attribute name="Offset Rotation" value="0.707107 -2.48501e-08 -0.707107 0" />
+				<attribute name="Radius" value="0.045" />
+				<attribute name="Length" value="0.226367" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R Hand" />
+				<attribute name="Offset Location" value="-6.67492 0.000525665 0.566394" />
+				<attribute name="Offset Rotation" value="0.736393 -5.32802e-05 -0.676554 0" />
+				<attribute name="Radius" value="0.03" />
+				<attribute name="Length" value="0.103978" />
+			</variant>
+		</attribute>
+		<attribute name="Gravity" value="0 -0.6 0" />
+	</component>
+	<component type="KawaiiPhysics" id="8">
+		<attribute name="Root Bone" value="skirt_b_01" />
+		<attribute name="Additional Root Bones">
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_c_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_d_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_e_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_f_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_g_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_h_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_j_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_k_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_l_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_m_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_n_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_o_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_p_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_q_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_r_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_s_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_t_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_u_01" />
+			</variant>
+			<variant type="KawaiiPhysicsRootBoneSetting">
+				<attribute name="Root Bone" value="skirt_v_01" />
+			</variant>
+		</attribute>
+		<attribute name="Dummy Bone Length" value="0.1" />
+		<attribute name="Bone Forward Axis" value="X_Negative" />
+		<attribute name="Damping" value="0.3" />
+		<attribute name="Stiffness" value="0.12" />
+		<attribute name="World Damping Location" value="0.5" />
+		<attribute name="World Damping Rotation" value="0.25" />
+		<attribute name="Limit Angle" value="45" />
+		<attribute name="Warm Up Frames" value="12" />
+		<attribute name="Teleport Distance Threshold" value="2" />
+		<attribute name="Teleport Rotation Threshold" value="65" />
+		<attribute name="Stiffness Curve Data" type="FloatCurve">
+			<attribute name="Keys">
+				<variant type="FloatCurveKey">
+					<attribute name="Value" value="1" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+				<variant type="FloatCurveKey">
+					<attribute name="Time" value="1" />
+					<attribute name="Value" value="0.6" />
+					<attribute name="Interp Mode" value="Cubic" />
+				</variant>
+			</attribute>
+		</attribute>
+		<attribute name="Capsule Limits">
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L Thigh" />
+				<attribute name="Offset Location" value="-24.0256 -2.38419e-07 0" />
+				<attribute name="Offset Rotation" value="0.707107 7.01699e-09 -0.707107 0" />
+				<attribute name="Radius" value="0.11" />
+				<attribute name="Length" value="0.326748" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R Thigh" />
+				<attribute name="Offset Location" value="-24.0256 -4.44089e-16 -4.76837e-07" />
+				<attribute name="Offset Rotation" value="0.707107 1.30702e-17 -0.707107 0" />
+				<attribute name="Radius" value="0.11" />
+				<attribute name="Length" value="0.326748" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L UpperArm" />
+				<attribute name="Offset Location" value="-14.4288 0 -7.62939e-06" />
+				<attribute name="Offset Rotation" value="0.707107 -0 -0.707107 0" />
+				<attribute name="Radius" value="0.04" />
+				<attribute name="Length" value="0.248576" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L Forearm" />
+				<attribute name="Offset Location" value="-13.5684 0 7.62939e-06" />
+				<attribute name="Offset Rotation" value="0.707107 0 -0.707106 0" />
+				<attribute name="Radius" value="0.03" />
+				<attribute name="Length" value="0.241367" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 L Hand" />
+				<attribute name="Offset Location" value="-6.67492 0.000525665 -0.566394" />
+				<attribute name="Offset Rotation" value="0.676554 -5.79927e-05 -0.736393 0" />
+				<attribute name="Radius" value="0.03" />
+				<attribute name="Length" value="0.103978" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R UpperArm" />
+				<attribute name="Offset Location" value="-14.4288 0 0" />
+				<attribute name="Offset Rotation" value="0.707107 0 -0.707107 0" />
+				<attribute name="Radius" value="0.04" />
+				<attribute name="Length" value="0.248576" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R Forearm" />
+				<attribute name="Offset Location" value="-13.5684 4.76837e-07 0" />
+				<attribute name="Offset Rotation" value="0.707107 -2.48501e-08 -0.707107 0" />
+				<attribute name="Radius" value="0.045" />
+				<attribute name="Length" value="0.226367" />
+			</variant>
+			<variant type="KawaiiPhysicsCapsuleLimit">
+				<attribute name="Driving Bone" value="Bip001 R Hand" />
+				<attribute name="Offset Location" value="-6.67492 0.000525665 0.566394" />
+				<attribute name="Offset Rotation" value="0.736393 -5.32802e-05 -0.676554 0" />
+				<attribute name="Radius" value="0.03" />
+				<attribute name="Length" value="0.103978" />
+			</variant>
+		</attribute>
+		<attribute name="Sync Bones">
+			<variant type="KawaiiPhysicsSyncBone">
+				<attribute name="Bone" value="Bip001 L Calf" />
+				<attribute name="Target Roots">
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_f_01" />
+					</variant>
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_q_01" />
+					</variant>
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_o_01" />
+					</variant>
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_v_01" />
+					</variant>
+				</attribute>
+				<attribute name="Global Scale" value="0.3 0.3 0.3" />
+				<attribute name="Apply Direction X" value="None" />
+				<attribute name="Apply Direction Y" value="None" />
+				<attribute name="Apply Direction Z" value="Positive" />
+			</variant>
+			<variant type="KawaiiPhysicsSyncBone">
+				<attribute name="Bone" value="Bip001 R Calf" />
+				<attribute name="Target Roots">
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_d_01" />
+					</variant>
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_m_01" />
+					</variant>
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_o_01" />
+					</variant>
+					<variant type="KawaiiPhysicsSyncTargetRoot">
+						<attribute name="Bone" value="skirt_v_01" />
+					</variant>
+				</attribute>
+				<attribute name="Global Scale" value="0.3 0.3 0.3" />
+				<attribute name="Apply Direction X" value="None" />
+				<attribute name="Apply Direction Y" value="None" />
+				<attribute name="Apply Direction Z" value="Positive" />
+			</variant>
+		</attribute>
+		<attribute name="Gravity" value="0 -1.5 0" />
+	</component>
+</node>

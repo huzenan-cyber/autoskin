@@ -1,0 +1,58 @@
+{
+  "version": "2026-10-12 user edit + joint-aware mesh + frozen skeleton binding",
+  "source": "source/WhiteCapTail_edited_vox.blend",
+  "source_sha256": "cfd5c311af579f7c5bef1c5b4e574af013e340cbd3639f1e63c91e09ac9739c8",
+  "vox": "source/WhiteCapTail_edited.vox",
+  "voxel_size_m": 0.02,
+  "voxel_count": 27240,
+  "voxel_bounds": [
+    76,
+    26,
+    95
+  ],
+  "bounds_m": [
+    1.52,
+    0.52,
+    1.9
+  ],
+  "body_colors": 9,
+  "triangles": {
+    "body": 17446,
+    "face_card": 2,
+    "total": 17448,
+    "surface_before_merge": 32572
+  },
+  "topology": {
+    "triangle_faces": 6378,
+    "quad_faces": 5535,
+    "ngons": 0,
+    "body_boundary_edges": 0,
+    "body_nonmanifold_edge_contacts": 81
+  },
+  "skeleton": {
+    "bones": 66,
+    "root": "Root",
+    "rest_pose_frozen": true,
+    "max_weights": 4,
+    "unweighted_vertices": 0,
+    "sample": "ai-dev-kit/assets/samples/OfficialCharacter_BindingSample.blend",
+    "sample_sha256": "E975D72AC8F56DE092F97FC1A0D4E4CC218DD67D454F68F25A1A9BEF66F97DAF"
+  },
+  "axes": {
+    "blender": "X horizontal, Z up; front -Y; meters",
+    "vox": "X horizontal, Z up; cell coordinates; scale defined here as 0.02m",
+    "urhox": "Y up, X right, Z forward, left-handed, meters"
+  },
+  "expressions": {
+    "method": "One RGBA textured quad follows Head over 3D voxel face",
+    "data": "expressions.json",
+    "vox_contains_rgba": false,
+    "engine_expression_driver_integrated": false
+  },
+  "limitations": [
+    "81 voxel edge-contact nonmanifold edges retained; not fully manifold manual retopology.",
+    "Compact hands follow Hand; independent finger articulation not implemented.",
+    "Tail follows Pelvis because frozen skeleton has no tail bones.",
+    "Formal UrhoX assets unchanged. Temporary MDL validates body animation only, without face card."
+  ]
+}

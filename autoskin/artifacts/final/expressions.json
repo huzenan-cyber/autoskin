@@ -1,0 +1,35 @@
+{
+  "width": 1024,
+  "height": 512,
+  "alpha": "straight",
+  "background": "transparent",
+  "states": [
+    {
+      "id": "neutral",
+      "texture": "Textures/face_neutral_rgba.png",
+      "atlas_uv_scale": [
+        0.5,
+        1
+      ],
+      "atlas_uv_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "blink",
+      "texture": "Textures/face_blink_rgba.png",
+      "atlas_uv_scale": [
+        0.5,
+        1
+      ],
+      "atlas_uv_offset": [
+        0.5,
+        0
+      ]
+    }
+  ],
+  "atlas": "Textures/face_expression_atlas.png",
+  "geometry_changes_between_states": false,
+  "opaque_rgb_matches_previous_albedo": true
+}

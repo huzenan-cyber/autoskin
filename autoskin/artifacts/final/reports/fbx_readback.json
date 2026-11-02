@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "bones": 66,
+  "root": "Root",
+  "triangles": 17448,
+  "unweighted": 0,
+  "max_weights": 4,
+  "weight_sum_error": 3.3527612686157227e-08,
+  "forbidden_weights": 0,
+  "texture_images": [
+    "FaceExpression_Neutral.001",
+    "FaceExpression_Neutral.002",
+    "FaceExpression_Neutral.003"
+  ]
+}

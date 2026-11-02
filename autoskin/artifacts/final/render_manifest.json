@@ -1,0 +1,37 @@
+{
+  "source_blend": "SK_WhiteCapTail.blend",
+  "source_sha256": "0c7feeaeeeaef4e7d93918c3e336ecf63bcece43f2d7a6bc2eb711ff93c17e94",
+  "renders": [
+    {
+      "file": "renders/rest.png",
+      "sha256": "071e9c777dff5d523296992c46a9998f0c627a74dd7b0de903497ce8d573c3c6",
+      "purpose": "rest",
+      "renderer": "Blender Cycles"
+    },
+    {
+      "file": "renders/elbows.png",
+      "sha256": "5180c36d615b7cf3cef00e87dbd2792a68905c4219a7f11bc1c8cd8ab178bce6",
+      "purpose": "elbows",
+      "renderer": "Blender Cycles"
+    },
+    {
+      "file": "renders/arms-down.png",
+      "sha256": "e296032dc5c51ba79c3b27afaee5010e0e04f4dee7f3f431d9b4bbb0bb20ecfd",
+      "purpose": "arms-down",
+      "renderer": "Blender Cycles"
+    },
+    {
+      "file": "renders/knees.png",
+      "sha256": "87b135e4b0caf4becc77a16cb49818f57fc16ebdedf90cecd146f39135863232",
+      "purpose": "knees",
+      "renderer": "Blender Cycles"
+    },
+    {
+      "file": "renders/combined.png",
+      "sha256": "8fd19b90dd52add7fef7718696718f45c06315e19a23eae1f877083d44fb6016",
+      "purpose": "combined",
+      "renderer": "Blender Cycles"
+    }
+  ],
+  "runtime_body_only": "renders/runtime-body-motion.png"
+}

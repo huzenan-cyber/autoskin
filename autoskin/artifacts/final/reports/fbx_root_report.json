@@ -1,0 +1,30 @@
+{
+  "max_retained_world_matrix_error": 0.0,
+  "max_roundtrip_world_matrix_error": 0.0,
+  "model_count_after": 68,
+  "model_count_before": 69,
+  "output_fbx": "C:\\Maker\\urhox-official-chameleon\\urhox-projects\\official-character-vox\\artifacts\\official-character-vox\\WhiteCapTail\\rigged_20261012\\SK_WhiteCapTail.fbx",
+  "output_sha256": "B29D679CC7A45061CBFE22830C40F6E75CF197177A0C4A7BB4C373B0A7F8C927",
+  "passed": true,
+  "removed_connections": 2,
+  "removed_pose_nodes": 2,
+  "root_name": "Root",
+  "root_parent_after": "scene",
+  "root_uid": 831917176,
+  "source_fbx": "C:\\Maker\\urhox-official-chameleon\\urhox-projects\\official-character-vox\\.tmp\\rig-final-20261012\\SK_WhiteCapTail.wrapped.fbx",
+  "source_sha256": "8ABD70B91004AE1FB520CD521CDDF17F3A1C67C319DC184273D89E7B8A3FA812",
+  "wrapper_name": "Armature",
+  "wrapper_node_attribute_uid": 307641051,
+  "wrapper_rotation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "wrapper_translation": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "wrapper_uid": 75465441,
+  "wrapper_uniform_scale": 0.009999998845160007
+}

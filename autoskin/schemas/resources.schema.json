@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://urhox.dev/schemas/resources.schema.json",
+  "title": "UrhoX Resources Configuration",
+  "description": "UrhoX 资源配置文件 (resources.json)，定义资源分组和预下载。支持分片配置：可创建 resources-*.json 文件（如 resources-ui.json），构建时按文件名字母序合并，后者字段覆盖前者。",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema 引用"
+    },
+    "preload_groups": {
+      "type": "array",
+      "description": "预下载分组列表。指定哪些 group 的资源在启动时预先下载，其余资源由引擎 DWP 按需下载。清空此字段则全部资源走 DWP",
+      "items": {
+        "type": "string",
+        "description": "分组名称"
+      },
+      "examples": [[], ["default"]]
+    },
+    "groups": {
+      "type": "object",
+      "description": "资源分组定义。通过 glob 模式将资源归入不同组，只有在组中的资源才会被构建引用",
+      "additionalProperties": {
+        "$ref": "#/$defs/resourceGroup"
+      },
+      "properties": {
+        "default": {
+          "$ref": "#/$defs/resourceGroup",
+          "description": "默认组"
+        }
+      }
+    },
+    "@runtime": {
+      "type": "object",
+      "description": "运行时配置。此字段内容会被提升到顶层后作为运行时资源输出（resources.json）",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "resourceGroup": {
+      "type": "array",
+      "description": "路径模式列表。支持：uuid://、{source}://、绝对 URL、glob 模式、本地路径（相对于 settings.json 的 asset_dirs）。本地路径/glob 可用前导 ! 排除；规则按声明顺序生效，后续规则可重新包含",
+      "items": {
+        "$ref": "#/$defs/resourceReference"
+      },
+      "examples": [
+        [
+          "**/*.lua",
+          "uuid://H8d2zgnU3sVQOrTjuYzbAlWa",
+          "official://Fonts/NotoSans.ttf"
+        ]
+      ]
+    },
+    "resourceReference": {
+      "type": "string",
+      "description": "资源引用格式",
+      "oneOf": [
+        {
+          "pattern": "^uuid://[A-Za-z0-9]{24}$",
+          "description": "UUID 协议: uuid://C3y7ubiP8nQLJmOepTuuvfqU"
+        },
+        {
+          "pattern": "^https?://.+$",
+          "description": "绝对 URL: https://cdn.example.com/file.png"
+        },
+        {
+          "pattern": "^(?!(?:uuid|alias|https?)://)[a-zA-Z0-9_-]+://.+$",
+          "description": "源协议（不含 uuid、alias、http、https 保留协议）: official://path, pub-john://path, mycdn://path"
+        },
+        {
+          "pattern": "^!(?![a-zA-Z0-9_-]+://).+$",
+          "description": "本地路径或 glob 排除规则: !**/*.ttf, !Fonts/**"
+        },
+        {
+          "pattern": "^(?!!)[^:]+$",
+          "description": "本地路径或 glob 模式: **/*.lua, Textures/bg.png"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "groups": {
+        "default": ["scripts/**"]
+      }
+    }
+  ]
+}

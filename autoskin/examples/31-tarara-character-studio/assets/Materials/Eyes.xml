@@ -1,0 +1,5 @@
+<material>
+    <surfaceshader name="Shaders/BLGL/TararaToon.shader" />
+    <surfacetexture name="albedo_map" texture="Textures/Tarara_Eye_D.png" />
+    <parameter name="toon_area_type" value="3" />
+</material>

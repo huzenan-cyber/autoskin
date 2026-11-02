@@ -1,0 +1,276 @@
+// Ocean water body shared by OceanWater.shader and OceanWaterFar.shader. A file that defines OCEAN_FAR_MESH before
+// including it draws the far water without vertex waves.
+
+// Additional crest and bubble scattering, written to EMISSION. Comment a line out to compare without it.
+#define OCEAN_CREST_SSS
+#define OCEAN_FOAM_BUBBLES
+// Optional additive foam scattering; disabled by default.
+//#define OCEAN_FOAM_FORWARD_SCATTER
+// Analytical caustics, written to WATER_COLOR_SCALE. Comment the line out to compare without them.
+#define OCEAN_CAUSTICS
+// Filter subpixel caustic peaks on both rendering paths. Comment out for an A/B comparison with the point-source area ratio.
+#define OCEAN_CAUSTICS_FILTERED
+
+// Textures/Water/DetailNormal.ktx: RG detail normal XY, B foam lace density, A the normal XY variance that each mip
+// averages out (stored halved). Linear data: no color hint.
+uniform sampler2D detail_map : filter_linear_mipmap, repeat_enable;
+uniform vec4 foam_color : source_color = vec4(0.88, 0.93, 0.93, 1.0);
+// Water medium coefficients per meter. Clear, strongly scattering water shows the bright seabed and hides the
+// wave relief; a darker medium leaves the reflections, where the waves show, in front.
+uniform vec3 absorption = vec3(0.70, 0.18, 0.09);
+uniform vec3 scattering = vec3(0.009, 0.036, 0.042);
+uniform float roughness_base : hint_range(0.0, 1.0, 0.01) = 0.045;
+uniform float detail_strength : hint_range(0.0, 2.0, 0.01) = 0.6;
+// Whitecaps (FFT surfaces): each band's compression where trailing foam starts, and the Jacobian below which
+// actively breaking crests foam, both at a wind speed of 8 m/s.
+uniform float whitecap_threshold : hint_range(0.0, 1.0, 0.01) = 0.4;
+uniform float breaking_jacobian : hint_range(-1.0, 1.0, 0.01) = 0.6;
+// Water thickness along the view, in meters, over which the shore foam fades out.
+uniform float shore_foam_depth : hint_range(0.05, 4.0, 0.05) = 0.45;
+// Set from Lua every frame: WaterWorld:GetTime() (TIME restarts every 20 s), the direction the wind blows toward in
+// world XZ and its speed in m/s, and the sun (direction toward it, linear color times brightness).
+uniform float scroll_time = 0.0;
+uniform vec2 wind_direction = vec2(0.0, 1.0);
+uniform float wind_speed = 8.0;
+uniform vec3 sun_direction = vec3(0.0, 1.0, 0.0);
+uniform vec3 sun_color = vec3(1.0);
+// Light through thin crests and under-surface bubbles.
+uniform vec3 sss_color : source_color = vec3(0.13, 0.62, 0.52);
+uniform float sss_strength : hint_range(0.0, 4.0, 0.01) = 1.0;
+// Height above the rest level, in meters, where crests transmit the most light.
+uniform float crest_height : hint_range(0.05, 4.0, 0.05) = 0.8;
+// Scale the background light under the waves. Caustics run
+// while caustics_enabled is above 0.5, so they can be compared at run time.
+uniform float caustics_brightness : hint_range(0.0, 4.0, 0.01) = 1.0;
+uniform float caustics_enabled = 1.0;
+// Fade of the vertex waves towards the mesh edge: (center X, center Z, distance where the fade starts, distance where
+// the waves are flat), distances along the larger of the X and Z offsets. The default keeps the waves everywhere.
+uniform vec4 wave_fade = vec4(0.0, 0.0, 100000.0, 200000.0);
+
+// Undisplaced world position on the rest plane: the wave functions take it, in vertex() and per pixel.
+varying vec3 rest_position;
+
+vec2 detail_hash(vec2 p) {
+    return fract(sin(vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)))) * 43758.5453);
+}
+
+// Detail normal XY and its averaged-out variance, sampled on a triangle grid with a random rotation and offset per
+// vertex so the map does not tile visibly (Heitz and Neyret 2018 style). Normals rotate back to world axes.
+// Each tap passes the gradients of the continuous uv, rotated like its coordinates: neighbouring pixels on two sides
+// of a grid edge sample with different rotations, and implicit derivatives would pick the coarsest mip there, a
+// dotted line of averaged-out variance along every triangle edge.
+vec3 detail_stochastic(vec2 uv) {
+    vec2 uv_dx = dFdx(uv);
+    vec2 uv_dy = dFdy(uv);
+    vec2 skewed = vec2(uv.x - 0.57735 * uv.y, 1.15470 * uv.y) * 0.6;
+    vec2 base = floor(skewed);
+    vec2 f = fract(skewed);
+    float z = 1.0 - f.x - f.y;
+    vec3 weights = z > 0.0 ? vec3(z, f.y, f.x) : vec3(-z, 1.0 - f.y, 1.0 - f.x);
+    vec2 v0 = z > 0.0 ? base : base + vec2(1.0, 1.0);
+    vec2 v1 = z > 0.0 ? base + vec2(0.0, 1.0) : base + vec2(1.0, 0.0);
+    vec2 v2 = z > 0.0 ? base + vec2(1.0, 0.0) : base + vec2(0.0, 1.0);
+    vec3 result = vec3(0.0);
+    for (int i = 0; i < 3; i++) {
+        vec2 corner = i == 0 ? v0 : (i == 1 ? v1 : v2);
+        float w = i == 0 ? weights.x : (i == 1 ? weights.y : weights.z);
+        vec2 h = detail_hash(corner);
+        float angle = h.x * 6.2831853;
+        float c = cos(angle);
+        float s = sin(angle);
+        vec4 texel = textureGrad(detail_map, vec2(uv.x * c - uv.y * s, uv.x * s + uv.y * c) + h.y * 7.13,
+                                 vec2(uv_dx.x * c - uv_dx.y * s, uv_dx.x * s + uv_dx.y * c),
+                                 vec2(uv_dy.x * c - uv_dy.y * s, uv_dy.x * s + uv_dy.y * c));
+        vec2 n = texel.xy * 2.0 - 1.0;
+        result.xy += vec2(n.x * c + n.y * s, -n.x * s + n.y * c) * w;
+        result.z += texel.a * 2.0 * w * w;
+    }
+    return result;
+}
+
+// Toksvig normal variance widens the GGX lobe.
+// For small slopes the Toksvig variance is half the summed slope variance.
+float composite_roughness(float roughness, float slope_variance) {
+    float variance = 0.5 * slope_variance - 0.00004;
+    if (variance <= 0.0)
+        return roughness;
+    float a = roughness * roughness;
+    float a2 = a * a;
+    float b = 2.0 * variance * (a2 - 1.0);
+    return pow((b - a2) / (b - 1.0), 0.25);
+}
+
+#ifdef OCEAN_CAUSTICS
+// Analytical caustics in meters with Y up: project the seabed point up to the surface along the approximately
+// refracted sun direction. Wave normals bend a small square of light; the ratio of its original area to its
+// projected seabed area gives the light gain.
+float water_caustics(vec3 seabed, float rest_height) {
+#ifdef OCEAN_CAUSTICS_FILTERED
+    // Evaluate screen derivatives before the depth branch, including quads crossing the shore.
+    vec2 pixel_x = dFdx(seabed.xz);
+    vec2 pixel_y = dFdy(seabed.xz);
+#endif
+    float depth = rest_height - seabed.y;
+    if (depth <= 0.0)
+        return 1.0;
+    // "Approximate refracted sun direction" with Light Parallax 1.
+    vec2 refracted = sun_direction.xz / mix(1.0, sun_direction.y, 0.4);
+    vec2 surface = seabed.xz + refracted * depth;
+    vec2 center = surface + water_wave_normal(vec3(surface.x, rest_height, surface.y)).xz * (depth * 2.0);
+    // Water Depth Caustics Spread 0.1, Caustics Finite Offset 8 cm, Caustics Water Depth Bias 64 cm.
+    float offset = depth * 0.1 + 0.08;
+    vec2 n0 = water_wave_normal(vec3(center.x, rest_height, center.y)).xz;
+    vec2 nx = water_wave_normal(vec3(center.x + offset, rest_height, center.y)).xz;
+    vec2 nz = water_wave_normal(vec3(center.x, rest_height, center.y + offset)).xz;
+    float throw_distance = -(2.0 * depth + 0.64);
+    vec2 edge_x = vec2(offset, 0.0) + throw_distance * (nx - n0);
+    vec2 edge_z = vec2(0.0, offset) + throw_distance * (nz - n0);
+#ifdef OCEAN_CAUSTICS_FILTERED
+    // FFT normals can collapse the projected patch below a pixel. The point-source area ratio then produces
+    // isolated HDR spikes. Approximate a finite beam and pixel footprint by adding their isotropic variance to
+    // the patch covariance before taking its area; this is sample filtering, not part of the point-source model.
+    // A 0.53 degree solar disc has radius 0.00465 radians. Its per-axis variance is r^2/4; the square patch's is 1/12.
+    float sun_radius = depth * 0.00465;
+    float spread = 0.5 * (dot(pixel_x, pixel_x) + dot(pixel_y, pixel_y)) + 3.0 * sun_radius * sun_radius;
+    float area = edge_x.x * edge_z.y - edge_x.y * edge_z.x;
+    float filtered_area = sqrt(area * area + spread * (dot(edge_x, edge_x) + dot(edge_z, edge_z)) + spread * spread);
+    // Normalize the unbent patch with the same footprint so a flat surface retains unit gain.
+    // Retain the minimum focus area (0.0005 cm^2) as the numerical floor, in square meters.
+    float ratio = (offset * offset + spread) / max(filtered_area, 0.0005 * 0.0001);
+#else
+    // Point-source area ratio; minimum focus area 0.0005 cm^2, in square meters.
+    float ratio = offset * offset / max(abs(edge_x.x * edge_z.y - edge_x.y * edge_z.x), 0.0005 * 0.0001);
+#endif
+    return mix(1.0, ratio, 0.5) * caustics_brightness;
+}
+#endif
+
+// The visual wake is an authored material input, independent of the engine wave/velocity/query field.
+#include "BLGL/Water/WaterWake.shaderinc"
+uniform int wake_count = 0;
+uniform vec4 wake_bounds = vec4(0.0);
+uniform vec4 wake_segments[96]; // Three vec4 values per segment; matches WaterWake.lua's upload budget.
+
+vec4 wake_field(vec2 world) {
+    vec4 field = vec4(0.0);
+    if (wake_count <= 0 || any(lessThan(world, wake_bounds.xy)) || any(greaterThan(world, wake_bounds.zw)))
+        return field;
+    for (int i = 0; i < min(wake_count, 32); ++i) {
+        field += WaterWakeSegment(world, wake_segments[i * 3], wake_segments[i * 3 + 1], wake_segments[i * 3 + 2].x);
+    }
+    field.z = field.z / (1.0 + field.z);
+    return field;
+}
+
+void vertex() {
+    rest_position = VERTEX;
+#ifndef OCEAN_FAR_MESH
+    // Fade vertex waves at the mesh edge to meet the far mesh at the rest level without a step.
+    vec2 from_center = abs(rest_position.xz - wave_fade.xy);
+    float edge_fade = 1.0 - smoothstep(wave_fade.z, wave_fade.w, max(from_center.x, from_center.y));
+    VERTEX += water_wave_offset(rest_position) * edge_fade;
+#endif
+    // NORMAL keeps the flat mesh normal: refraction offsets by its difference to the pixel normal.
+}
+
+void fragment() {
+    float t = scroll_time;
+    vec2 world_xz = rest_position.xz;
+
+    // Two detail layers scrolled with the wind: a stochastic 3 m layer and a rotated 14 m layer. The map's mips
+    // average both towards flat with distance; their variance moves into roughness below.
+    vec3 fine = detail_stochastic(world_xz * 0.34 + wind_direction * (t * 0.048));
+    vec2 rotated_xz = vec2(world_xz.x * 0.799 - world_xz.y * 0.602, world_xz.x * 0.602 + world_xz.y * 0.799);
+    vec4 coarse_texel = texture(detail_map, rotated_xz * 0.071 + wind_direction * (t * 0.02));
+    vec2 coarse = coarse_texel.xy * 2.0 - 1.0;
+    coarse = vec2(coarse.x * 0.799 + coarse.y * 0.602, -coarse.x * 0.602 + coarse.y * 0.799);
+    vec2 detail = (fine.xy * 0.6 + coarse * 0.55) * detail_strength;
+    float detail_variance = (fine.z * 0.36 + coarse_texel.a * 2.0 * 0.3025) * detail_strength * detail_strength;
+
+    vec3 wave_normal = water_wave_normal(rest_position);
+
+    // SCENE_DEPTH_WITHOUT_WATER is the view depth of the scene behind this pixel; the difference to the surface is
+    // the water thickness along the view. Negative thickness is a foreground silhouette, never shoreline.
+    float thickness = SCENE_DEPTH_WITHOUT_WATER - (VIEW_MATRIX * vec4(VERTEX, 1.0)).z;
+    float not_foreground = step(0.0, thickness);
+    float shore = 1.0 - smoothstep(0.0, shore_foam_depth, thickness);
+
+    // Whitecap coverage: crests folding now and the whitecap memory they leave behind. Linear waves steepen only
+    // slowly with the wind, while the observed whitecap cover grows about as U^3.4 (Monahan and O'Muircheartaigh
+    // 1980): both onsets move with the wind speed from their values at 8 m/s.
+    float wind_bias = clamp((wind_speed - 8.0) * 0.022, -0.12, 0.25);
+    float trailing = water_wave_foam(rest_position, whitecap_threshold - wind_bias, 2.5);
+    float breaking = clamp((breaking_jacobian + wind_bias - water_wave_jacobian(rest_position)) * 3.0, 0.0, 1.0);
+    // Combine current breaking with the weighted per-band memory before clamping, as in water-test.
+    float cover = clamp(breaking + trailing * 0.6, 0.0, 1.0);
+    // Foam lace: a fixed layer plus a layer in wind axes whose older foam stretches into streaks downwind.
+    vec2 wind_xz = vec2(dot(world_xz, wind_direction), dot(world_xz, vec2(-wind_direction.y, wind_direction.x)));
+    float streak = 1.0 + clamp(trailing * 0.8, 0.0, 1.0) * 2.2;
+    vec2 wind_uv = vec2(wind_xz.x / streak, wind_xz.y) / 25.9 + vec2(0.31, 0.77);
+    float wind_lace = texture(detail_map, wind_uv).b;
+    float lace = texture(detail_map, world_xz / 7.0).b * 0.55 + wind_lace * 0.45;
+    // water-test maps coverage through the lace density, including the solid coverage term. Only the onset
+    // fades smoothly; the clamped density directly gives opacity, without an extra transparency multiplier.
+    float density = (lace - (1.0 - cover)) * 2.5 + cover * cover * 0.6;
+    float whitecap = clamp(density, 0.0, 1.0) * smoothstep(0.0, 0.05, cover);
+    float shore_foam = shore * smoothstep(0.25, 0.7, lace + shore * 0.35) * 0.85;
+    // Fraction of the light the foam layer intercepts.
+    vec4 wake = wake_field(VERTEX.xz);
+    float wake_foam = wake.z * smoothstep(0.18, 0.82, lace);
+    float foam = max(max(whitecap, shore_foam), wake_foam) * not_foreground;
+    // Foam damps the detail ripples but follows the wave slope, keeping its lighting attached to the crest.
+    vec3 normal = normalize(wave_normal + vec3(detail.x, 0.0, detail.y) * (wave_normal.y * (1.0 - foam)) + vec3(wake.x, 0.0, wake.y) * wave_normal.y);
+    NORMAL = normal;
+
+    float slope_variance = water_wave_slope_variance(rest_position) + detail_variance;
+    ROUGHNESS = composite_roughness(clamp(mix(roughness_base, 0.55, foam) + wake.w * 0.25, 0.0, 1.0), slope_variance);
+    ALBEDO = foam_color.rgb;
+    SPECULAR = 0.25; // F0 0.02: water, IOR 1.33
+    // Opacity of the foam layer; 0 keeps the medium transmission and scattering.
+    ALPHA = foam;
+    WATER_ABSORPTION = absorption;
+    WATER_SCATTERING = scattering;
+    WATER_PHASE_G = 0.3;
+#ifdef OCEAN_CAUSTICS
+    if (caustics_enabled > 0.5) {
+        // The scene behind the water on this pixel's view ray; the renderer fades the scale out at the shoreline.
+        float surface_depth = (VIEW_MATRIX * vec4(VERTEX, 1.0)).z;
+        vec3 behind = CAMERA_POSITION_WORLD +
+            (VERTEX - CAMERA_POSITION_WORLD) * (SCENE_DEPTH_WITHOUT_WATER / surface_depth);
+        WATER_COLOR_SCALE = vec3(water_caustics(behind, rest_position.y));
+    }
+#endif
+
+    vec3 view = normalize(CAMERA_POSITION_WORLD - VERTEX);
+    float transmission = (1.0 - foam) * (1.0 - (0.02 + 0.98 * pow(1.0 - clamp(dot(view, normal), 0.0, 1.0), 5.0)));
+    float daylight = smoothstep(-0.02, 0.05, sun_direction.y);
+    vec3 emission = vec3(0.0);
+#ifdef OCEAN_CREST_SSS
+    // Sunlight through thin crests seen against the sun.
+    float crest = clamp((VERTEX.y - rest_position.y) / crest_height, 0.0, 1.0);
+    float against_sun = pow(clamp(dot(-view, sun_direction) * 0.5 + 0.5, 0.0, 1.0), 6.0);
+    float back_face = clamp(0.6 - 0.6 * dot(normal, sun_direction), 0.0, 1.0);
+    emission += sss_color * sun_color * (crest * crest * against_sun * back_face *
+        (0.3 + 0.7 * clamp(dot(view, normal), 0.0, 1.0)) * daylight * 0.26);
+#endif
+#ifdef OCEAN_FOAM_BUBBLES
+    // Keep subsurface bubble scattering independent of the surface foam opacity.
+    float bubble_trailing = clamp((water_wave_foam(rest_position) - whitecap_threshold + wind_bias) * 2.5, 0.0, 1.0);
+    float bubble_cover = clamp(breaking + bubble_trailing * 0.6, 0.0, 1.0);
+    emission += sss_color * sun_color * (bubble_cover * 0.08 * daylight / 3.14159265);
+#endif
+    // The foam scatters this light itself, so the transmission through the foam does not apply.
+    vec3 foam_glow = vec3(0.0);
+#ifdef OCEAN_FOAM_FORWARD_SCATTER
+    // Single scattering of sunlight in the foam layer, which the diffuse lighting leaves out: bubbles scatter forward
+    // (Henyey-Greenstein, g 0.6), so foam seen against the sun glows instead of showing only its shaded side. The
+    // diffuse lighting holds the isotropic part. The layer faces up: its bubbles catch the sun around the heap,
+    // whatever the slope of the wave under it.
+    float cos_scatter = dot(-view, sun_direction);
+    float phase = 0.64 / (4.0 * 3.14159265 * pow(1.36 - 1.2 * cos_scatter, 1.5));
+    float sun_cos = max(sun_direction.y, 0.0);
+    foam_glow = foam_color.rgb * sun_color *
+        (foam * max(phase - 0.25 / 3.14159265, 0.0) * sun_cos / (sun_cos + max(view.y, 0.05)) * daylight);
+#endif
+    EMISSION = emission * sss_strength * transmission + foam_glow;
+}

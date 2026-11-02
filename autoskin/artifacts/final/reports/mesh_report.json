@@ -1,0 +1,28 @@
+{
+  "source_sha256": "cfd5c311af579f7c5bef1c5b4e574af013e340cbd3639f1e63c91e09ac9739c8",
+  "voxels": 27240,
+  "colors": 9,
+  "size": [
+    76,
+    26,
+    95
+  ],
+  "vox_readback_exact": true,
+  "offgrid": 0,
+  "surface_triangles": 32572,
+  "reduction": {
+    "method": "Exact voxel face rectangles with shared-edge stitching and nondegenerate local triangulation",
+    "body_triangles": 17446,
+    "face_sides": {
+      "4": 5534,
+      "3": 6378
+    },
+    "rectangles": 6935,
+    "axis_aligned_faces": true,
+    "all_body_vertices_on_2cm_grid": true,
+    "surface_color_cell_coverage_preserved": true,
+    "boundary_edges": 0,
+    "nonmanifold_contact_edges": 81,
+    "joint_rings": "2cm near shoulder, elbow, wrist, hip, knee, ankle; coarser spans elsewhere"
+  }
+}

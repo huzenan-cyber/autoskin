@@ -1,0 +1,5 @@
+<texture>
+    <srgb enable="true" />
+    <filter mode="anisotropic" />
+    <mipmap enable="true" />
+</texture>

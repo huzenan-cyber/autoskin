@@ -1,0 +1,17 @@
+{
+  "method": "Automatic Weights baseline followed by semantic joint-chain correction",
+  "bone_count": 66,
+  "rest_unchanged": true,
+  "weight_histogram": {
+    "1": 3310,
+    "3": 1354,
+    "2": 3331,
+    "4": 630
+  },
+  "unweighted": 0,
+  "max_influences": 4,
+  "hands": "Compact palm follows Hand; no independent fingertip claim",
+  "tail": "Rigid to Pelvis; standard skeleton has no tail bones",
+  "head": "Headwear, hair, face and RGBA cards follow Head",
+  "topology_nonmanifold_contact_edges": 81
+}

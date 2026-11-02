@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "scope": "Body skinning only; RGBA face card is not included in the temporary MDL.",
+  "views": [
+    {
+      "name": "idle",
+      "raw_result": "FAIL",
+      "frames": 600,
+      "lua_errors": 0,
+      "resource_errors": 0,
+      "real_errors": [],
+      "ignored_errors": [
+        {
+          "category": "engine",
+          "message": "Frame time spike: 196.098ms (threshold: 100ms)",
+          "frame": 456
+        }
+      ],
+      "markers": [
+        "[2026-10-12 22_29_15_557][47][Script] WC_STATE Idle time=0.10000000149012",
+        "[2026-10-12 22_29_15_558][47][Script] WC_READY bones=66 pose=idle view=quarter time=0.1"
+      ]
+    },
+    {
+      "name": "walk-a",
+      "raw_result": "FAIL",
+      "frames": 600,
+      "lua_errors": 0,
+      "resource_errors": 0,
+      "real_errors": [],
+      "ignored_errors": [
+        {
+          "category": "engine",
+          "message": "Frame time spike: 198.484ms (threshold: 100ms)",
+          "frame": 442
+        }
+      ],
+      "markers": [
+        "[2026-10-12 22_29_28_528][61][Script] WC_STATE Walk time=0.15000000596046",
+        "[2026-10-12 22_29_28_529][61][Script] WC_READY bones=66 pose=walk view=quarter time=0.15"
+      ]
+    },
+    {
+      "name": "walk-b",
+      "raw_result": "FAIL",
+      "frames": 600,
+      "lua_errors": 0,
+      "resource_errors": 0,
+      "real_errors": [],
+      "ignored_errors": [
+        {
+          "category": "engine",
+          "message": "Frame time spike: 191.992ms (threshold: 100ms)",
+          "frame": 446
+        }
+      ],
+      "markers": [
+        "[2026-10-12 22_29_41_357][57][Script] WC_STATE Walk time=0.44999998807907",
+        "[2026-10-12 22_29_41_358][57][Script] WC_READY bones=66 pose=walk view=quarter time=0.45"
+      ]
+    },
+    {
+      "name": "run",
+      "raw_result": "FAIL",
+      "frames": 600,
+      "lua_errors": 0,
+      "resource_errors": 0,
+      "real_errors": [],
+      "ignored_errors": [
+        {
+          "category": "engine",
+          "message": "Frame time spike: 270.13ms (threshold: 100ms)",
+          "frame": 444
+        }
+      ],
+      "markers": [
+        "[2026-10-12 22_29_54_079][59][Script] WC_STATE Run time=0.20000000298023",
+        "[2026-10-12 22_29_54_079][59][Script] WC_READY bones=66 pose=run view=quarter time=0.2"
+      ]
+    }
+  ],
+  "visual_review": "Idle, two walk times and run inspected; no gross joint pulling or spikes in sampled poses. Not exhaustive animation QA."
+}

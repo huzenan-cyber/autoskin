@@ -1,0 +1,498 @@
+{
+  "armature_count": 1,
+  "armature_object_matrix_error": 0.0,
+  "authoring_root_scale_factor": 0.009999998845160007,
+  "blend": "C:\\Maker\\urhox-official-chameleon\\urhox-projects\\official-character-vox\\artifacts\\official-character-vox\\WhiteCapTail\\rigged_20261012\\SK_WhiteCapTail.blend",
+  "bone_count": 66,
+  "bone_names_and_order_match": true,
+  "chain_alignment_required": false,
+  "chain_bones_checked": 41,
+  "chain_max_angle_degrees": 135.49039426365124,
+  "chain_median_angle_degrees": 89.9999273723973,
+  "chain_over_45_degrees": 39,
+  "identity_errors": [
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Root",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 Pelvis",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Thigh",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.01978234059262607,
+      "bone": "Bip001 L Calf",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.01978234059262607
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Foot",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Toe0",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 LCalfTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 LThighTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Thigh",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Calf",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Foot",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Toe0",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 RCalfTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 RThighTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 Spine",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 Spine1",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 Spine2",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 Neck",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 Head",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Clavicle",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L UpperArm",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Forearm",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Hand",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "p_weapon_l",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger0",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger01",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger02",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger1",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger11",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger12",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger2",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger21",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger22",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger3",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger31",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger32",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger4",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger41",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L Finger42",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 L ForeTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 LUpArmTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Clavicle",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R UpperArm",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Forearm",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Hand",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "p_weapon_r",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger0",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger01",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger02",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger1",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger11",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger12",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger2",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger21",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger22",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger3",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger31",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger32",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger4",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger41",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R Finger42",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "IK_AK",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "IK_1911",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 R ForeTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    },
+    {
+      "aim_error_degrees": 0.0,
+      "bone": "Bip001 RUpArmTwist",
+      "head_error_m": 0.0,
+      "parent_ok": true,
+      "roll_error_degrees": 0.0
+    }
+  ],
+  "influence_histogram": {
+    "1": 3306,
+    "2": 3331,
+    "3": 1354,
+    "4": 630
+  },
+  "max_aim_error_degrees": 0.01978234059262607,
+  "max_head_error_m": 0.0,
+  "max_roll_error_degrees": 0.01978234059262607,
+  "max_weight_sum_error": 3.3527612686157227e-08,
+  "multi_bone_vertices": 5315,
+  "native_aim_axis": "+X",
+  "parent_errors": [],
+  "passed": true,
+  "root_bones": [
+    "Root"
+  ],
+  "skeleton_contract": "C:\\Maker\\urhox-official-chameleon\\urhox-projects\\official-character-vox\\ai-dev-kit\\assets\\samples\\OfficialCharacter_BindingSample_SkeletonContract.json",
+  "unknown_weighted_groups": [],
+  "unweighted_vertices": 0,
+  "vertex_count": 8621
+}

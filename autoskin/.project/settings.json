@@ -1,0 +1,27 @@
+{
+  "$schema": "../schemas/settings.schema.json",
+  "sources": {
+    "engine": {
+      "tag": "latest"
+    },
+    "engine-res": {
+      "tag": "latest"
+    },
+    "official-res": {
+      "tag": "latest"
+    },
+    "offical-3c-pubg": {
+      "tag": "latest",
+      "base_url": "https://tapcode-sce.spark.xd.com/src/offical-3c-pubg/"
+    }
+  },
+  "build": {
+    "generate_fs_path": true,
+    "output_dir": "../dist",
+    "asset_dirs": [
+      "../assets",
+      "../scripts"
+    ],
+    "asset_ignores": []
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "../schemas/project.schema.json",
+  "project_id": "pelican-bike",
+  "name": "pelican-bike",
+  "author": {
+    "id": "local"
+  },
+  "entry": "main.lua",
+  "version": "1.0.0"
+}
